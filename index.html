@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contoh Halaman Web dengan Vue.js</title>
+    <!-- Mengimpor Vue.js -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <style>
+        /* Gaya untuk kelas CSS */
+        h3 {
+            font-weight: bold;
+            color: blue;
+            text-align: center;
+            /* Posisikan teks di tengah */
+            position: fixed;
+            /* Mengatur posisi menjadi tetap (fixed) */
+            top: 220px;
+            /* Jarak dari bagian atas sejauh 20px */
+            left: 50%;
+            /* Pusatkan elemen di tengah horizontal */
+            transform: translateX(-50%);
+            /* Geser elemen ke kiri sejauh 50% dari lebar sendiri */
+            z-index: 9999;
+            /* Indeks z untuk memastikan elemen di atas konten lainnya */
+            width: 100%;
+            /* Lebar elemen 100% agar tetap di tengah */
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Pusatkan konten secara horizontal */
+            background-image: url('3.png');
+            /* Ganti '3.png' dengan path yang benar untuk gambar latar belakang Anda */
+            background-size: 1400px;
+            /* Menyesuaikan ukuran gambar background */
+            background-position: center;
+            /* Posisi gambar latar belakang di tengah */
+            color: palevioletred;
+        }
+
+        #app {
+            text-align: center;
+            margin-top: 100px;
+            /* Atur margin atas untuk memberikan ruang pada judul */
+            z-index: 10000; /* Pastikan konten di atas gambar latar belakang */
+        }
+
+        .bindings {
+            font-weight: bold;
+        }
+
+        .style-bindings {
+            background-color: palevioletred;
+        }
+
+        input,
+        p,
+        button {
+            margin: 10px auto;
+            /* Pusatkan elemen secara horizontal */
+            display: block;
+            /* Jadikan elemen sebagai blok untuk mengatur lebar */
+        }
+
+        /* Gaya untuk tombol */
+        button {
+            padding: 10px 20px;
+            /* Padding tombol */
+            cursor: pointer;
+            /* Mengubah kursor saat diarahkan ke tombol */
+        }
+
+        footer {
+            background-color: greenyellow;
+            color: black;
+            text-align: center;
+            padding: 1px 0;
+            /* Mengatur padding atas dan bawah 20px, samping 0 */
+            position: fixed;
+            /* Ubah posisi ke fixed agar tetap di bagian bawah layar */
+            bottom: 0;
+            /* Posisikan ke bagian bawah */
+            width: 100%;
+            /* Lebar 100% untuk mengisi lebar layar */
+            z-index: 9999; /* Pastikan footer di atas gambar latar belakang */
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <h3>FEBY NURHAZIZAH - 223510108</h3>
+    <div id="app">
+        <!-- Binding dan Style Binding -->
+        <p :class="['bindings', { 'style-bindings': isHighlighted }]">Ini adalah contoh halaman web dengan Vue.js</p>
+        <input type="text" v-model="inputText" @input="updateText">
+        <p v-if="inputText">Anda mengetik: {{ inputText }}</p>
+        <p v-else>Silakan mulai mengetik sesuatu...</p>
+        <p class="bindings">{{ inputText }}</p>
+        <button @click="toggleHighlight">Toggle Highlight</button>
+    </div>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 FEBY NURHAZIZAH - 223510108</p>
+    </footer>
+
+    <script>
+        // Menginisialisasi Vue.js
+        new Vue({
+            el: '#app',
+            data: {
+                inputText: '', // Nilai dari input teks
+                isHighlighted: false // Apakah teks terhighlight atau tidak
+            },
+            methods: {
+                // Metode untuk mengupdate nilai isHighlighted saat input berubah
+                updateText() {
+                    this.isHighlighted = this.inputText.length > 10; // Jika panjang teks lebih dari 10, maka terhighlight
+                },
+                // Metode untuk mengubah nilai isHighlighted saat tombol diklik
+                toggleHighlight() {
+                    this.isHighlighted = !this.isHighlighted; // Toggle nilai isHighlighted
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
